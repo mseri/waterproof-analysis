@@ -1,0 +1,126 @@
+# Chapter 1
+
+<hint title="📦 Import libraries (click to open/close)">
+```coq
+Require Import Rbase.
+Require Import Rfunctions.
+
+Require Import Waterproof.Waterproof.
+Require Import Waterproof.Notations.Common.
+Require Import Waterproof.Notations.Reals.
+Require Import Waterproof.Notations.Sets.
+Require Import Waterproof.Chains.
+Require Import Waterproof.Tactics.
+Require Import Waterproof.Libs.Analysis.SupAndInf.
+Require Import Waterproof.Automation.
+
+Waterproof Enable Automation RealsAndIntegers.
+Waterproof Enable Automation Sets.
+
+Open Scope R_scope.
+Open Scope subset_scope.
+Set Default Goal Selector "!".
+
+Notation "'max(' x , y )" := (Rmax x y)
+  (format "'max(' x ,  y ')'").
+Notation "'min(' x , y )" := (Rmin x y)
+  (format "'min(' x ,  y ')'").
+```
+</hint>
+## Warmup Exercises
+
+### Majoant of a concrete interval
+
+```coq
+Lemma exercise_majorant :
+  ∃ M ∈ ℝ,
+    ∀ x ∈ [0, 5], (x ≤ M).
+Proof.
+```
+<input-area>
+```coq
+
+```
+</input-area>
+```coq
+Qed.
+```
+
+### Infimum of a concrete interval
+
+```coq
+Lemma exercise_infimum_concrete :
+  3 is the _infimum_ of [3, 4).
+Proof.
+Expand the definition of infimum.
+```
+<input-area>
+```coq
+
+```
+</input-area>
+```coq
+Qed.
+```
+
+## Exercise infimum of an interval
+```coq
+Lemma exercise_infimum :
+  ∀ a ∈ ℝ, ∀ b ∈ ℝ,
+    a < b ⇒ a is the _infimum_ of [a,b).
+Proof.
+```
+<input-area>
+```coq
+
+```
+</input-area>
+```coq
+Qed.
+```
+## Exercise on maximum
+```coq
+Section ex_maximum.
+
+Variable A : subset(ℝ).
+Hypothesis A_bdd_above : (∃ b ∈ ℝ, b is an _upper bound_ for A).
+Hypothesis A_nonempty : (∃ a ∈ ℝ, a ∈ A).
+
+Lemma ex_maximum :
+  ∀ y ∈ ℝ,
+  (y is the _supremum_ of A) ∧ (y ∈ A) ⇒ y is the _maximum_ of A.
+Proof.
+```
+<input-area>
+```coq
+
+```
+</input-area>
+```coq
+Qed.
+
+End ex_maximum.
+```
+## Exercise on supremum of a concrete interval
+
+<hint title="💡 Hint (click to open/close)">
+To use the *alternative characterization* of the supremum, write
+
+`It suffices to show that (4 is an upper bound for [0,4))
+  ∧ (∀ ε > 0, ∃ a ∈ [0, 4), 4 - ε < a).`
+</hint>
+
+```coq
+Lemma ex_supremum_concrete:
+  4 is the _supremum_ of [0,4).
+Proof.
+```
+<input-area>
+```coq
+
+```
+</input-area>
+```coq
+Qed.
+```
+
