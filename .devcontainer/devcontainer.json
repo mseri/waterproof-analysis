@@ -1,0 +1,10 @@
+{
+    "image": "ghcr.io/impermeable/waterproof:3.0.0",
+    "name": "Waterproof container for exercises",
+
+    "customizations": {
+        "vscode": {
+            "extensions" : [ "waterproof-tue.waterproof" ]
+        }
+    }
+}
