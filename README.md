@@ -2,7 +2,7 @@
 
 Waterproof is educational software designed to help students with learning the skill of proving mathematical statements. It uses a natural syntax See [here](https://impermeable.github.io/) for more information.
 
-This repository contains exercise sheets for the [Analysis](https://ocasys.rug.nl/current/catalog/course/WBMA012-05) course at the University of Groningen.
+This repository contains exercise sheets for the [Analysis](https://ocasys.rug.nl/current/catalog/course/WBMA012-05) course at the University of Groningen. The material is based on the one available from the [waterproof-exercise-sheets](https://github.com/impermeable/waterproof-exercise-sheets) repository.
 
 ## Tutorial
 
