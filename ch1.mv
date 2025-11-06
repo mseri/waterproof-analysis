@@ -124,3 +124,10 @@ Proof.
 Qed.
 ```
 
+You can use the space below to formalize additional exercises if you wish.
+<input-area>
+```coq
+(* Type your additional exercises here *)
+```
+</input-area>
+
