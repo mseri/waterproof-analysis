@@ -59,7 +59,7 @@ Proof.
 ```coq
 Qed.
 
-end Ex_2_2_2.
+End Ex_2_2_2.
 
 ```
 
@@ -86,7 +86,7 @@ $b : \mathbb{N} \to \mathbb{R}$ be sequences, and let $p, q \in \mathbb{R}$.
 In the lemma below we introduce a real number $\alpha$ and a squence $ac(n) := \alpha a(n)$.
 In the lemma we show that if $\alpha > 0$ and $a$ converges to $p$, then $\alpha a(n) \to \alpha p$.
 
-In this way you can have a look both at the notation and how one can go about proving the statement. Keep in mind that for demonstration purposes, here we are using a few more steps than necessary. Hopefully this can be a helpful guide. Remember that you can click throught the steps of the proof and look at the remaining goals to prove in the Goals panel.
+In this way you can have a look both at the notation and how one can go about proving the statement. Hopefully this can be a helpful guide and a refresher to the syntax. Remember that you can click throught the steps of the proof and look at the remaining goals to prove in the Goals panel.
 
 ```coq
 Variable α : ℝ.
@@ -102,9 +102,9 @@ Assume that α > 0.
 Assume that a ⟶ p as (i).
 We need to show that ∀ ε > 0, ∃ N1 ∈ ℕ, ∀ n ≥ N1, ｜ac(n) - (α * p)｜ < ε.
 Take ε > 0.
-Define r := ε/α.
-It holds that r > 0.
-It holds that ∃ Na ∈ ℕ, ∀ n ≥ Na, | a(n) - p | < r as (ii).
+Define ε1 := ε/α.
+It holds that ε1 > 0.
+By (i) it holds that ∃ Na ∈ ℕ, ∀ n ≥ Na, | a(n) - p | < ε1 as (ii).
 Obtain such a Na.
 Choose N1 := Na.
 - Indeed, N1 ∈ ℕ.
@@ -112,7 +112,8 @@ Choose N1 := Na.
   Take n ≥ N1.
   It holds that｜ac(n) - (α * p)｜ = ｜(α * a(n)) - (α * p)｜.
   It holds that ｜(α * a(n)) - (α * p)｜ = α * ｜a(n) - p｜.
-  By (ii) it holds that (& α * ｜a(n) - p｜ < α * r = ε).
+  By (ii) it holds that (& α * ｜a(n) - p｜ < α * (ε / α) = ε).
+  We conclude that ｜ac(n) - (α * p)｜ < ε.
 Qed.
 ```
 
@@ -149,7 +150,7 @@ Proof.
 ```coq
 Qed.
 
-end Order_limit_theorem.
+End Order_limit_theorem.
 ```
 
 You can use the space below to formalize additional exercises if you wish.
