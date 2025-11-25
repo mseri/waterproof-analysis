@@ -1,4 +1,4 @@
-# Chapter 1
+# Chapter 1 : Real Numbers - Supremum and Infimum
 
 <hint title="📦 Import libraries (click to open/close)">
 ```coq
@@ -27,6 +27,7 @@ Notation "'min(' x , y )" := (Rmin x y)
   (format "'min(' x ,  y ')'").
 ```
 </hint>
+
 ## Warmup Exercises
 
 ### Majoant of a concrete interval
