@@ -1,0 +1,160 @@
+# Chapter 2: sequences and limits
+
+<hint title="📦 Import libraries (click to open/close)">
+```coq
+Set Default Goal Selector "!".
+
+Require Import Coq.Reals.Reals.
+Require Import Waterproof.Tactics.
+Require Import Waterproof.Notations.Common.
+Require Import Waterproof.Notations.Reals.
+Require Import Waterproof.Notations.Sets.
+Require Import Waterproof.Chains.
+Require Import Waterproof.Automation.
+Require Import Waterproof.Libs.Analysis.Sequences.
+
+Require Import Waterproof.Libs.Reals.
+
+Waterproof Enable Automation RealsAndIntegers.
+Waterproof Enable Automation Intuition.
+
+Open Scope R_scope.
+Open Scope subset_scope.
+
+Hint Extern 0 => progress (unfold R_dist in *) : wp_reals.
+
+Notation "'max(' x , y )" := (Rmax x y)
+  (format "'max(' x ,  y ')'").
+Notation "'min(' x , y )" := (Rmin x y)
+  (format "'min(' x ,  y ')'").
+
+Notation "'max' ( x , y )" := (Nat.max x y)
+  (format "'max' '(' x ,  y ')'")  : nat_scope.
+Notation "'min' ( x , y )" := (Nat.min x y)
+  (format "'min' '(' x ,  y ')'") : nat_scope.
+
+Waterproof Register Expand "⟶";
+  for converges_to;
+  as "Definition of convergence".
+
+Notation "'the' 'triangle' 'inequality'" := Rabs_triang.
+Set Bullet Behavior "Waterproof Relaxed Subproofs".
+```
+</hint>
+
+```coq
+Section Ex_2_2_2.
+
+Definition a (n : ℕ) := (2*n + 1)/(5*n + 4).
+
+Lemma ex_2_2_2_a :
+ a ⟶ (2/5).
+Proof.
+```
+<input-area>
+```coq
+
+```
+</input-area>
+```coq
+Qed.
+
+end Ex_2_2_2.
+
+```
+
+In the exercise above, think about the definition of limit.
+You can ask for `Help.` if you get stuck.
+
+Remember that when choosing a natural number, such as `N`, it can be necessary to use the `%nat` notation, as in `N := (...)%nat`.
+
+Below you will find a simple example of a more abstract proof that can guide you to solve the next exercise.
+
+```coq
+Section Order_limit_theorem.
+
+Variable a : ℕ → ℝ.
+Variable b : ℕ → ℝ.
+
+Variable p : ℝ.
+Variable q : ℝ.
+```
+
+The above says: let $a : \mathbb{N} \to \mathbb{R}$ and
+$b : \mathbb{N} \to \mathbb{R}$ be sequences, and let $p, q \in \mathbb{R}$.
+
+In the lemma below we introduce a real number $\alpha$ and a squence $ac(n) := \alpha a(n)$.
+In the lemma we show that if $\alpha > 0$ and $a$ converges to $p$, then $\alpha a(n) \to \alpha p$.
+
+In this way you can have a look both at the notation and how one can go about proving the statement. Keep in mind that for demonstration purposes, here we are using a few more steps than necessary. Hopefully this can be a helpful guide. Remember that you can click throught the steps of the proof and look at the remaining goals to prove in the Goals panel.
+
+```coq
+Variable α : ℝ.
+Definition ac (n : ℕ) := α * a(n).
+
+Lemma order_limit_theorem_product :
+α > 0 ⇒ (
+a ⟶ p ⇒ (
+    ac ⟶ (α * p)
+    )).
+Proof.
+Assume that α > 0.
+Assume that a ⟶ p as (i).
+We need to show that ∀ ε > 0, ∃ N1 ∈ ℕ, ∀ n ≥ N1, ｜ac(n) - (α * p)｜ < ε.
+Take ε > 0.
+Define r := ε/α.
+It holds that r > 0.
+It holds that ∃ Na ∈ ℕ, ∀ n ≥ Na, | a(n) - p | < r as (ii).
+Obtain such a Na.
+Choose N1 := Na.
+- Indeed, N1 ∈ ℕ.
+- We need to show that ∀ n ≥ N1, ｜ac(n) - (α * p)｜ < ε.
+  Take n ≥ N1.
+  It holds that｜ac(n) - (α * p)｜ = ｜(α * a(n)) - (α * p)｜.
+  It holds that ｜(α * a(n)) - (α * p)｜ = α * ｜a(n) - p｜.
+  By (ii) it holds that (& α * ｜a(n) - p｜ < α * r = ε).
+Qed.
+```
+
+We will now define the sequence $c : \mathbb{N} \to \mathbb{R}$ by
+$$c(n) = a(n) + b(n).$$
+The lemma below now basically states if $a$ converges to $p$ and $b$ converges to $q$, then $c$ converges to $p + q$.
+
+## Before you start, here are a few points of attention:
+
+⚠️ When Waterproof remains stuck on "verified on line NN", it means that the step that's being taken around line NN is too large for Waterproof to verify. It tries but cannot find the reason. You then need to provide more information, or make a smaller step.
+
+⚠️ Avoid using `N` and `N0` as variable names. Using these names usually gives problems later.
+
+⚠️ When choosing a natural number, such as `N1`, it can be necessary to use the `%nat` notation, as in `N1 := (...)%nat` .
+
+⚠️ Also in Waterproof, it can be useful to rename certain dummy variables in statements (for instance replacing `ε` by `ε1` in a statement of the form `∀ ε1 > 0, ...`.
+
+⚠️ You can use `the triangle inequality`.
+
+```coq
+Definition c (n : ℕ) := a(n) + b(n).
+
+Lemma order_limit_theorem_sum :
+a ⟶ p ⇒ (
+    b ⟶ q
+    ⇒ c ⟶ (p + q)).
+Proof.
+```
+<input-area>
+```coq
+
+```
+</input-area>
+```coq
+Qed.
+
+end Order_limit_theorem.
+```
+
+You can use the space below to formalize additional exercises if you wish.
+<input-area>
+```coq
+(* Type your additional exercises here *)
+```
+</input-area>
