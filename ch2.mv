@@ -98,13 +98,12 @@ a ⟶ p ⇒ (
     ac ⟶ (α * p)
     )).
 Proof.
-Assume that α > 0.
-Assume that a ⟶ p as (i).
+Assume that α > 0 as (i).
+Assume that a ⟶ p as (ii).
 We need to show that ∀ ε > 0, ∃ N1 ∈ ℕ, ∀ n ≥ N1, ｜ac(n) - (α * p)｜ < ε.
 Take ε > 0.
-Define ε1 := ε/α.
-It holds that ε1 > 0.
-By (i) it holds that ∃ Na ∈ ℕ, ∀ n ≥ Na, | a(n) - p | < ε1 as (ii).
+It holds that ε/α > 0.
+By (ii) it holds that ∃ Na ∈ ℕ, ∀ n ≥ Na, | a(n) - p | < ε/α.
 Obtain such a Na.
 Choose N1 := Na.
 - Indeed, N1 ∈ ℕ.
@@ -112,7 +111,7 @@ Choose N1 := Na.
   Take n ≥ N1.
   It holds that｜ac(n) - (α * p)｜ = ｜(α * a(n)) - (α * p)｜.
   It holds that ｜(α * a(n)) - (α * p)｜ = α * ｜a(n) - p｜.
-  By (ii) it holds that (& α * ｜a(n) - p｜ < α * (ε / α) = ε).
+  By (i) it holds that α * ｜a(n) - p｜ < α * (ε / α).
   We conclude that ｜ac(n) - (α * p)｜ < ε.
 Qed.
 ```
